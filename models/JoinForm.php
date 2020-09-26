@@ -22,13 +22,13 @@ class JoinForm extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Укажите имя пользователя'],
+            ['username', 'unique', 'targetClass' => '\app\models\User'],
             ['username', 'string', 'min' => 2, 'max' => 64],
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 128],
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Укажите email'],
+            ['email', 'unique', 'targetClass' => '\app\models\User'],
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
         ];

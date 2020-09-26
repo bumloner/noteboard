@@ -29,22 +29,23 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'Note Board',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
 
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
+    // make menu items
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Join', 'url' => ['/site/join']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'User Notes', 'url' => ['/note']];
+        if (Yii::$app->user->identity->isAdmin()) {
+            $menuItems[] = ['label' => 'Admin Notes', 'url' => ['/admin/note']];
+            $menuItems[] = ['label' => 'Admin Tasks', 'url' => ['/admin/task']];
+        }
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -73,9 +74,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; Note Board <?= date('Y') ?></p>
     </div>
 </footer>
 

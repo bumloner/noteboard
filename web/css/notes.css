@@ -1,0 +1,27 @@
+.note {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px;
+    background: #eee;
+}
+
+.note_color {
+    height: 5px;
+}
+
+.note_name {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.note_tasks {
+}
+
+.note_task {
+    margin: 10px 0 10px 5px;
+}
+
+.note_task_status_done {
+    color: #aaa;
+    text-decoration: line-through;
+}

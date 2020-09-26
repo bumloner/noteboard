@@ -9,12 +9,12 @@ use yii\web\IdentityInterface;
 /**
  * User model
  *
- * @property integer $id
+ * @property int $id
  * @property string $username
  * @property string $password_hash
  * @property string $auth_key
  * @property string $email
- * @property integer $role
+ * @property int $role
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -118,25 +118,21 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Является ли текущий пользователь админом
+     * Проверить, является ли текущий пользователь админом
      */
     public function isAdmin()
     {
         return ($this->role === self::ROLE_ADMIN);
     }
 
-    /**
-     * Является ли пользователь в базе данных админом
-     *
-     * @param string $username имя пользователя
-     * @return bool true if user is admin, false if not
-     */
-    public static function isUserAdmin($username)
+    public static function getAll()
     {
-        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])) {
-            return true;
-        } else {
-            return false;
-        }
+        return self::find()->asArray()->all();
+    }
+
+    public function getNotes()
+    {
+//        return $this->hasMany(Note::className(), ['user_id' => 'id']);
+        return Note::getByUserWithTasks($this);
     }
 }

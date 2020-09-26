@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
 
     <?php
-        // получаем массив всех пользователей
+        // получаем массив имен всех пользователей
         $users = \app\models\User::getAll();
         $users_names = [];
         foreach ($users as $user) {

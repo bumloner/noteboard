@@ -98,11 +98,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generate password_hash from password and save it to model
-     *
-     * @throws \yii\base\Exception
-     *
-     * @param string $password password to hash
+     * Сгенерировать хеш пароля и сохранить в модель
      */
     public function setPassword($password)
     {
@@ -110,7 +106,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generate authKey for auth
+     * Сгенерировать auth key для авторизации
      */
     public function generateAuthKey()
     {
@@ -125,14 +121,19 @@ class User extends ActiveRecord implements IdentityInterface
         return ($this->role === self::ROLE_ADMIN);
     }
 
+    /**
+     * Получить всех пользователей
+     */
     public static function getAll()
     {
         return self::find()->asArray()->all();
     }
 
+    /**
+     * Получить все заметки пользователя, вместе с задачами
+     */
     public function getNotes()
     {
-//        return $this->hasMany(Note::className(), ['user_id' => 'id']);
         return Note::getByUserWithTasks($this);
     }
 }

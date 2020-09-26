@@ -7,14 +7,14 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Task */
 /* @var $form yii\widgets\ActiveForm */
 
-// получаем массив всех заметок
+// получаем массив с названиями всех заметок
 $notes = \app\models\Note::getAll();
 $notes_names = [];
 foreach ($notes as $note) {
     $notes_names[$note['id']] = $note['name'];
 }
 
-// заполняем данные по умолчанию
+// заполняем свойства задачи по умолчанию
 if (!isset($model->priority)) {
     $model->priority = 10;
 }

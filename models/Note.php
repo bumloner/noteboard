@@ -80,7 +80,6 @@ class Note extends \yii\db\ActiveRecord
      */
     public function getTasks()
     {
-//        return $this->hasMany(Task::className(), ['note_id' => 'id'])->where(['status' => 1]);
         return $this->hasMany(Task::className(), ['note_id' => 'id']);
     }
 

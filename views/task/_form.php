@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Task */
 /* @var $form yii\widgets\ActiveForm */
 
-// заполняем данные по умолчанию
+// заполняем свойства задачи по умолчанию
 if (!isset($model->priority)) {
     $model->priority = 10;
 }

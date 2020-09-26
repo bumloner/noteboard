@@ -17,11 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="container">
         <div class="row">
+
             <?php if (empty($notes)): ?>
             <h2>Заметок нет</h2>
             <?php endif; ?>
+
             <?php foreach($notes as $note): ?>
                 <div class="col-sm-3 note">
+
                     <div class="note_color" style="background: #<?= $note['color'] ?>"></div>
                     <?= Html::a($note['name'], ['note/update', 'id' => $note['id']], ['class' => 'note_name']) ?>
 
@@ -58,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'task/update',
                                         'id' => $task['id']
                                 ], ['class' => $task_class]) ?>
-
                                 <p>
                                     <?= Html::a('Edit task', ['task/update', 'id' => $task['id']], ['class' => 'btn btn-primary']) ?>
                                     <?= Html::a('Del task', ['task/delete', 'id' => $task['id']], [
@@ -69,11 +71,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ],
                                     ]) ?>
                                 </p>
-
                             </div>
                         <?php endforeach; ?>
-                    </div>
 
+                    </div>
                     <p>
                         <?= Html::a('Add Task', ['task/create', 'note_id' => $note['id']], ['class' => 'btn btn-default']) ?>
                         <?= Html::a('Delete note', ['delete', 'id' => $note['id']], [
@@ -84,12 +85,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ]) ?>
                     </p>
-
-
                 </div>
             <?php endforeach; ?>
+
         </div>
     </div>
 
 </div>
-

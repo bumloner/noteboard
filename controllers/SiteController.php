@@ -90,7 +90,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Отобразить форму регистрации пользователя
+     * Join (registration) action
      */
     public function actionJoin()
     {

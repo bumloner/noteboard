@@ -44,6 +44,21 @@ The minimum requirement by this project template that your Web server supports P
 INSTALLATION
 ------------
 
+
+
+
+### Notes-yii2
+
+#### Создание админа
+
+Чтобы создать админа выполните консольную команду:
+~~~
+yii create-admin <username> <password>
+~~~
+
+
+
+
 ### Install via Composer
 
 If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions

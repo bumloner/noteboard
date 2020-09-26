@@ -7,11 +7,9 @@ use yii\console\ExitCode;
 use app\models\User;
 
 /**
- * Class CreateAdminController
- *
  * Команда для создания админа
- * Использование: yii create-admin <username> <password>
  *
+ * Использование: yii create-admin <username> <password>
  */
 class CreateAdminController extends Controller
 {

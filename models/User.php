@@ -116,4 +116,27 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->auth_key = Yii::$app->security->generateRandomString(32);
     }
+
+    /**
+     * Является ли текущий пользователь админом
+     */
+    public function isAdmin()
+    {
+        return ($this->role === self::ROLE_ADMIN);
+    }
+
+    /**
+     * Является ли пользователь в базе данных админом
+     *
+     * @param string $username имя пользователя
+     * @return bool true if user is admin, false if not
+     */
+    public static function isUserAdmin($username)
+    {
+        if (static::findOne(['username' => $username, 'role' => self::ROLE_ADMIN])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

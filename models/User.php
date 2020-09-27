@@ -144,7 +144,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function isOwnerOfTask(Task $task)
     {
         // получаем данные о заметке, которой принадлежит задача
-        $note = \app\models\Note::getById($task->note_id);
+        if (($note = \app\models\Note::findOne($task->note_id)) === null) {
+            throw new NotFoundHttpException('Note of task not found.');
+        }
 
         // проверка, принадлежит ли заметка текущему пользователю
         return ($this->isOwnerOfNote($note));

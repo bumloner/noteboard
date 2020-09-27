@@ -83,11 +83,6 @@ class Note extends \yii\db\ActiveRecord
         return $this->hasMany(Task::className(), ['note_id' => 'id']);
     }
 
-    public static function getById($id)
-    {
-        return self::find()->where(['id' => $id])->one();
-    }
-
     public static function getAll()
     {
         return self::find()->asArray()->all();

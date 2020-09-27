@@ -82,7 +82,9 @@ class TaskController extends Controller
          * Примечание: здесь не используется User::isOwnerOfTask(),
          *  т.к. данные о заметке используются в текущем методе
          */
-        $note = \app\models\Note::getById($note_id);
+        if (($note = \app\models\Note::findOne($note_id)) === null) {
+            throw new NotFoundHttpException('Note of task not found.');
+        }
 
         // проверка, принадлежит ли заметка текущему пользователю
         if (Yii::$app->user->getIdentity()->isOwnerOfNote($note)) {
@@ -117,7 +119,9 @@ class TaskController extends Controller
         }
 
         // получаем данные о заметке, которой принадлежит текущая задача
-        $note = \app\models\Note::getById($model->note_id);
+        if (($note = \app\models\Note::findOne($model->note_id)) === null) {
+            throw new NotFoundHttpException('Note of task not found.');
+        }
 
         return $this->render('update', [
             'model' => $model,

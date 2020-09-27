@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
 
             <?php if (empty($notes)): ?>
-            <h2>Заметок нет</h2>
+            	<h2>Заметок нет</h2>
             <?php endif; ?>
 
             <?php foreach($notes as $note): ?>
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="note_task">
                                 <?php
                                     $task_class = 'note_task';
-                                    // если задача выполнена, то добавляем класс
+                                    // если задача выполнена, то добавляем нужный класс
                                     if ($task['status'] == 0) {
                                         $task_class .= ' note_task_status_done';
                                     }
@@ -61,6 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'task/update',
                                         'id' => $task['id']
                                 ], ['class' => $task_class]) ?>
+
                                 <p>
                                     <?= Html::a('Edit task', ['task/update', 'id' => $task['id']], ['class' => 'btn btn-primary']) ?>
                                     <?= Html::a('Del task', ['task/delete', 'id' => $task['id']], [

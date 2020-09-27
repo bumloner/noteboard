@@ -76,8 +76,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     </div>
                     <p>
-                        <?= Html::a('Add Task', ['task/create', 'note_id' => $note['id']], ['class' => 'btn btn-default']) ?>
-                        <?= Html::a('Delete note', ['delete', 'id' => $note['id']], [
+                        <?= Html::a('Add task', ['task/create', 'note_id' => $note['id']], ['class' => 'btn btn-default']) ?>
+                        <?= Html::a('Edit note', ['update', 'id' => $note['id']], ['class' => 'btn btn-primary']) ?>
+                        <?= Html::a('Del note', ['delete', 'id' => $note['id']], [
                             'class' => 'btn btn-danger',
                             'data' => [
                                 'confirm' => 'Are you sure you want to delete this item?',

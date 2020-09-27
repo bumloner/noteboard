@@ -19,6 +19,7 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    // роли пользователей
     const ROLE_USER = 10;
     const ROLE_ADMIN = 20;
 
@@ -114,14 +115,6 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Проверить, является ли текущий пользователь админом
-     */
-    public function isAdmin()
-    {
-        return ($this->role === self::ROLE_ADMIN);
-    }
-
-    /**
      * Получить всех пользователей
      */
     public static function getAll()
@@ -135,5 +128,33 @@ class User extends ActiveRecord implements IdentityInterface
     public function getNotes()
     {
         return Note::getByUserWithTasks($this);
+    }
+
+    /**
+     * Проверка, принадлежит ли заметка пользователю
+     */
+    public function isOwnerOfNote(Note $note)
+    {
+        return ($this->id === $note->user_id);
+    }
+
+    /**
+     * Проверка, принадлежит ли задача пользователю
+     */
+    public function isOwnerOfTask(Task $task)
+    {
+        // получаем данные о заметке, которой принадлежит задача
+        $note = \app\models\Note::getById($task->note_id);
+
+        // проверка, принадлежит ли заметка текущему пользователю
+        return ($this->isOwnerOfNote($note));
+    }
+
+    /**
+     * Проверка, является ли текущий пользователь админом
+     */
+    public function isAdmin()
+    {
+        return ($this->role === self::ROLE_ADMIN);
     }
 }

@@ -49,6 +49,7 @@ class NoteController extends Controller
 
     public function actionIndex()
     {
+    	// получаем заметки текущего пользователя
         $notes = Yii::$app->user->getIdentity()->getNotes();
 
         return $this->render('index', compact('notes'));
@@ -75,7 +76,7 @@ class NoteController extends Controller
         $model = new Note();
 
         if ($model->load(Yii::$app->request->post())) {
-            // проверка, принадлежит ли заметка текущему пользователю
+            // делаем текущего пользователя автором заметки
             $model->user_id = Yii::$app->user->id;
             if ($model->save()) {
                 return $this->redirect(['/']);
@@ -132,7 +133,7 @@ class NoteController extends Controller
     {
         if (($model = Note::findOne($id)) !== null) {
             // проверка, принадлежит ли заметка текущему пользователю
-            if ($model->user_id === Yii::$app->user->id) {
+            if (Yii::$app->user->getIdentity()->isOwnerOfNote($model)) {
                 return $model;
             }
         }

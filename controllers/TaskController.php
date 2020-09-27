@@ -6,6 +6,7 @@ use Yii;
 use app\models\Task;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\ForbiddenHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -76,12 +77,18 @@ class TaskController extends Controller
     {
         $model = new Task();
 
-        // проверка, принадлежит ли задача текущему пользователю
+        /** получаем данные о заметке, которой принадлежит задача
+         *
+         * Примечание: здесь не используется User::isOwnerOfTask(),
+         *  т.к. данные о заметке используются в текущем методе
+         */
         $note = \app\models\Note::getById($note_id);
-        if ($note->user_id === \Yii::$app->user->id) {
+
+        // проверка, принадлежит ли заметка текущему пользователю
+        if (Yii::$app->user->getIdentity()->isOwnerOfNote($note)) {
             $model->note_id = $note_id;
         } else {
-            throw new NotFoundHttpException('You cannot create task for this note.');
+            throw new ForbiddenHttpException('You cannot create task for this note.');
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -143,7 +150,7 @@ class TaskController extends Controller
     {
         if (($model = Task::findOne($id)) !== null) {
             // проверка, принадлежит ли задача текущему пользователю
-            if (\app\models\Note::getById($model->note_id)->user_id === \Yii::$app->user->id) {
+            if (Yii::$app->user->getIdentity()->isOwnerOfTask($model)) {
                 return $model;
             }
         }

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
 
             <?php if (empty($notes)): ?>
-            	<h2>Заметок нет</h2>
+            	<h3>No notes</h3>
             <?php endif; ?>
 
             <?php foreach($notes as $note): ?>

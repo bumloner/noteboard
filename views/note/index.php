@@ -36,15 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php
                             // сортировка задач по приоритету
                             if ($note['tasks']) {
-                                usort($note['tasks'], function ($a, $b) {
-                                    /*
-                                     * PHP_INT_SIZE - используется как максимальное число
-                                     *  для того чтобы выполненные задания оказались в конце
-                                    */
-                                    $priority_a = ($a['status'] == 0 ? -PHP_INT_SIZE + $a['priority'] : $a['priority']);
-                                    $priority_b = ($b['status'] == 0 ? -PHP_INT_SIZE + $b['priority'] : $b['priority']);
-                                    return ($priority_a < $priority_b);
-                                });
+                            	\app\models\Task::sortByPriority($note['tasks']);
                             }
                         ?>
 

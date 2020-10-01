@@ -4,12 +4,9 @@
 </div>
 
 
-### How to create admin
+### Try it online
 
-To create admin use console command:
-~~~
-yii create-admin <username> <password>
-~~~
+<a href="http://noteboard.example.bumloner.com">noteboard.example.bumloner.com</a>
 
 
 ### Preview
@@ -17,6 +14,19 @@ yii create-admin <username> <password>
 ###### v1.0 (26.09.2020)
 
 ![screen_2020-09-26](https://user-images.githubusercontent.com/1931436/94349106-9bc7df00-006b-11eb-9cfd-54f948f93b68.png)
+
+
+### How to install
+
+#### Migrate
+~~~
+./yii migrate
+~~~
+
+#### Create admin using console command
+~~~
+./yii create-admin <username> <password>
+~~~
 
 
 ### TODO

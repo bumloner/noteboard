@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $task_class .= ' note_task_status_done';
                                     }
                                 ?>
-                                <?= Html::a($task['text'] . ' (приоритет: ' . $task['priority'] . ')', [
+                                <?= Html::a($task['text'] . ' (priority: ' . $task['priority'] . ')', [
                                         'task/update',
                                         'id' => $task['id']
                                 ], ['class' => $task_class]) ?>

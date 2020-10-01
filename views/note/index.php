@@ -25,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php foreach($notes as $note): ?>
                 <div class="col-sm-3 note">
 
-                    <div class="note_color" style="background: #<?= $note['color'] ?>"></div>
-                    <?= Html::a($note['name'], ['note/update', 'id' => $note['id']], ['class' => 'note_name']) ?>
+                    <div class="note_color" style="background: #<?= Html::encode($note['color']) ?>"></div>
+                    <?= Html::a(Html::encode($note['name']), ['note/update', 'id' => $note['id']], ['class' => 'note_name']) ?>
 
                     <div class="note_tasks">
                         <?php if (count($note['tasks']) === 0): ?>
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         $task_class .= ' note_task_status_done';
                                     }
                                 ?>
-                                <?= Html::a($task['text'] . ' (priority: ' . $task['priority'] . ')', [
+                                <?= Html::a(Html::encode($task['text']) . ' (priority: ' . $task['priority'] . ')', [
                                         'task/update',
                                         'id' => $task['id']
                                 ], ['class' => $task_class]) ?>

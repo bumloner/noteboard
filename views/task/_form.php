@@ -17,7 +17,7 @@ if (!isset($model->status)) {
 ?>
 
 <?php if(isset($note_name)): ?>
-    <p>Note: <b><?= $note_name ?></b></p>
+    <p>Note: <b><?= Html::encode($note_name) ?></b></p>
 <?php endif; ?>
 
 <div class="task-form">
@@ -26,7 +26,7 @@ if (!isset($model->status)) {
 
     <?= $form->field($model, 'text')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'priority')->textInput(['value' => $model->priority]) ?>
+    <?= $form->field($model, 'priority')->textInput(['value' => Html::encode($model->priority)]) ?>
 
     <?= $form->field($model, 'status')->checkbox([
             'checked ' => ($model->status === 1 ? true : false)])?>

@@ -4,6 +4,8 @@
 </div>
 
 
+<strike>
+
 ### Try it online
 
 <a href="http://noteboard.example.bumloner.com">noteboard.example.bumloner.com</a>
@@ -12,6 +14,8 @@
 username: admin
 password: admin
 ```
+
+</strike>
 
 
 ### Preview
